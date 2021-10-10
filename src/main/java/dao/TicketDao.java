@@ -114,9 +114,9 @@ public class TicketDao extends DbUtil implements CrudRepo<Ticket> {
     {
        return updateDb("UPDATE tbl_tickets set ticketStatus='ENDED' WHERE ticketNo='"+ticket.getTicketNo()+"'")==1;
     }
-    public boolean removeOnPurchase(CartItem cartItem)
+    public void removeOnPurchase(CartItem cartItem)
     {
-       return updateDb("DELETE FROM tbl_cart WHERE ticketNo='"+ cartItem.getTicketNo()+"' AND userId="+cartItem.getUserId()+"")==1;
+       updateDb("DELETE FROM tbl_cart WHERE userId="+cartItem.getUserId()+"");
     }
 
     @Override

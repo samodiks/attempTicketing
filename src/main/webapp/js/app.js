@@ -1,30 +1,37 @@
-var appComponents = {
+var AppComponents = {
         htmlForm:{
-            formCmp:{},
+            htmlForm:{},
             render: function(newForm)
             {
-                this.formCmp = newForm;
-                var formToRender ='<h2>'+ this.formCmp.formTitle +'</h2>';
-                formToRender += '<form action="'+this.formCmp.formAction+'" method="'+this.formCmp.formMethod+'">';
-                this.formCmp.formItems.forEach(formItems=>{
+                let me = this;
+                let formToRender ='<h2>'+ me.formTitle +'</h2>';
+                formToRender += '<form action="'+ me.formAction+'" method="'+ me.formMethod+'">';
+                me.formItems.forEach(formItems=>{
                     formToRender += '<div class="'+formItems.labelDivColumn +'">';
                     formToRender += '<label for="'+formItems.labelId +'">' +formItems.labelTitle+'</label></div>';
                     formToRender += '<div class="'+formItems.inputDivColumn +'">';
                     formToRender += '<input type="'+formItems.inputType+'" class="'+formItems.inputClass+'" id="'+formItems.labelId+'" name="'+formItems.inputName+'" placeholder="'+formItems.inputPlaceholder+'"/>  </div>';
                 });
-                formToRender+='<div class="'+this.formCmp.divButtonClass+'"><input type="'+this.formCmp.formButton.buttonType+'" value="'+this.formCmp.formButton.buttonValue+'" class="'+this.formCmp.formButton.buttonClass+'"/></div></form>';
+                if (Object.keys(me.selects).length !== 0 )
+                {
+                    me.selects.forEach(select=> {
+                        formToRender +='<label  class = "'+select.labelClass+'" for="' + select.id +'">' + select.labelTitle + ':</label><br>'
+                            +'<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id = "'+select.id+'" name ="'+select.name+'">'
+                        select.values.forEach(value=> {
+                            formToRender += '<option value="' + value + '">' + value + '</option>'
+                        });
+                        formToRender += '</select>';
+                    });
+                }
+                formToRender+='<div class="'+me.divButtonClass+'"><input type="'+me.formButton.buttonType+'" value="'+me.formButton.buttonValue+'" class="'+me.formButton.buttonClass+'"/></div></form>';
 
-                document.getElementById(this.formCmp.renderId).innerHTML = formToRender;
+                document.getElementById("componentRender").innerHTML = formToRender;
             }
         }
     };
 
-/*
- <div class="row">
-            <div class="col-md-2"></div>
-   <div class="col-md-8"><input type="submit" value="Submit" class="btn btn-block"></div>
-</div>
-* */
+
+
 
 
 

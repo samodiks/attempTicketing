@@ -1,4 +1,4 @@
-appComponents.htmlForm.render({
+AppComponents.htmlForm.render.call({
     formTitle:"Client Registration",
     formAction:"./client-register",
     formMethod:"POST",
@@ -47,16 +47,6 @@ appComponents.htmlForm.render({
         },
         {
             labelDivColumn: "col-md-2 col-md-offset-2",
-            labelId: "gender",
-            labelTitle: "Client Gender",
-            inputDivColumn:"col-md-8",
-            inputType: "text",
-            inputClass: "form-control",
-            inputName: "gender",
-            inputPlaceholder:"Enter Gender ... i.e. Male/Female"
-        },
-        {
-            labelDivColumn: "col-md-2 col-md-offset-2",
             labelId: "dob",
             labelTitle: "Date of Birth",
             inputDivColumn:"col-md-8",
@@ -66,6 +56,16 @@ appComponents.htmlForm.render({
             inputPlaceholder:"Enter date of Birth ... i.e. 0000 - 00 - 00"
         }
     ],
+    selects : [
+        {
+            labelTitle: "Gender",
+            id: "gender",
+            name: "gender",
+            labelClass: "form-label",
+            option:"Field Status",
+            values: ["MALE", "FEMALE"]
+        },
+    ],
     divButtonClass:"col-md-8",
     formButton:{
         buttonType:"submit",
@@ -73,3 +73,7 @@ appComponents.htmlForm.render({
         buttonClass:"btn btn-block"
     }
 });
+
+
+
+

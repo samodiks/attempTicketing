@@ -95,7 +95,8 @@ public class CartAction extends HttpServlet {
 
         if(ticketSale(cart))
         {
-            removeTicketOnPurchase(httpRequest);
+            ticketDao.removeOnPurchase(cart);
+            System.out.println("Ticket successfully removed from cart");
             httpResponse.sendRedirect("./home.jsp");
         }
     }
@@ -107,12 +108,12 @@ public class CartAction extends HttpServlet {
         }
         return true;
     }
-    private boolean removeTicketOnPurchase(HttpServletRequest request)
+    private void removeTicketOnPurchase(HttpServletRequest request)
     {
         User user = (User) request.getSession().getAttribute("username");
         CartItem cart= new CartItem();
         cart.setUserId(user.getUserId());
-        return ticketDao.removeOnPurchase(cart);
+        ticketDao.removeOnPurchase(cart);
     }
 
 }

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "LoginFilter", urlPatterns = "/*")
+//@WebFilter(filterName = "LoginFilter", urlPatterns = "/*")
 public class LoginFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -34,7 +34,7 @@ public class LoginFilter implements Filter {
                 servletResponse.getWriter().flush();
             }
             else
-                ((HttpServletResponse) servletResponse).sendRedirect("./login.jsp");
+                ((HttpServletResponse) servletResponse).sendRedirect("http://127.0.0.1:8080/AttemptTicketing/login.jsp");
         }else{
             chain.doFilter(servletRequest, servletResponse);
         }
